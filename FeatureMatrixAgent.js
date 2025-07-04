@@ -1,7 +1,7 @@
 import fs from "fs";
 
 export async function verifyFeatureMatrix() {
-  console.log("📋 Feature Matrix Agent running...");
+  // console.log("📋 Feature Matrix Agent running..."); // Disable log to stop static output
 
   const matrix = JSON.parse(fs.readFileSync("feature_matrix.json", "utf-8"));
   const required = [
@@ -21,4 +21,6 @@ export async function verifyFeatureMatrix() {
     missing
   };
 }
+
+
 
