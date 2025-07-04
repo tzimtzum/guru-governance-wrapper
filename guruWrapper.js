@@ -1,12 +1,9 @@
-// guruWrapper.js
-
 import { startAgents, checkHeartbeat, connectToUTA } from "./guruCore";
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
 
 console.log("🟢 Guru Governance Wrapper started...");
 
-// Create a new progress bar
 const progressBar = new cliProgress.SingleBar({
     format: 'Guru Progress |' + colors.cyan('{bar}') + '| {percentage}% || {agent}',
     barCompleteChar: '\u2588',
