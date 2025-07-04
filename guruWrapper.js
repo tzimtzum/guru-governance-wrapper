@@ -2,7 +2,7 @@ console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
 
 const cliProgress = require('cli-progress');
 const colors = require('ansi-colors');
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 console.log("🟢 Guru Governance Wrapper started...");
 
@@ -75,5 +75,6 @@ progressBar.start(100, 0, { agent: 'Initializing...', eta: '-' });
 
     console.log("🟢 Guru Governance Wrapper fully integrated with UTA. Ready for next commands.");
 })();
+
 
 
