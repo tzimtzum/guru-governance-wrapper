@@ -1,5 +1,6 @@
 export async function runLearningSimulation() {
-  console.log("📚 Learning Simulation Agent running...");
+  // console.log("🔎 UI Audit Agent running...");
+
 
   const simulatedSources = [
     "Shulchan Aruch",
