@@ -17,9 +17,10 @@ function checkHeartbeat(agentName) {
     console.log(`❤️ Heartbeat check passed for ${agentName}`);
 }
 
-// Simulate agent execution
+// Simulate agent execution — no external imports or old logs
 async function startAgents(agentName) {
-    await new Promise(resolve => setTimeout(resolve, 1000)); // simulate async work
+    // Simulate a task with a slight delay to see progress
+    await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
 // Simulate connecting to UTA
@@ -59,6 +60,7 @@ progressBar.start(100, 0, { agent: 'Initializing...' });
 
     console.log("🟢 Guru Governance Wrapper fully integrated with UTA. Ready for next commands.");
 })();
+
 
 
 
