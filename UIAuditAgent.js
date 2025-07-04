@@ -1,5 +1,6 @@
 export async function runUIAudit() {
-  console.log("🔎 UI Audit Agent running...");
+  // console.log("🔎 UI Audit Agent running...");
+
 
   const checks = [
     { element: "Shiur Topic Dropdown", present: true },
