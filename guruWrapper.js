@@ -2,6 +2,7 @@ console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
 
 const cliProgress = require('cli-progress');
 const colors = require('ansi-colors');
+const fetch = require('node-fetch');
 
 console.log("🟢 Guru Governance Wrapper started...");
 
@@ -18,8 +19,7 @@ function checkHeartbeat(agentName) {
 }
 
 async function startAgents(agentName, estSeconds) {
-    // Split estimated seconds into steps for smoother update
-    const steps = estSeconds * 2; // 0.5s increments
+    const steps = estSeconds * 2; // smooth 0.5s increments
     for (let i = 0; i < steps; i++) {
         await new Promise(resolve => setTimeout(resolve, 500));
     }
@@ -27,8 +27,20 @@ async function startAgents(agentName, estSeconds) {
 
 async function connectToUTA() {
     console.log("🔗 Establishing secure Guru link to UTA...");
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("✅ UTA connection established. Guru oversight active.");
+
+    try {
+        const response = await fetch("http://localhost:3000/api/guru/route", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "startGuru" })
+        });
+
+        const data = await response.json();
+        console.log(`✅ UTA response: ${data.message}`);
+        console.log("✅ UTA connection established. Guru oversight active.");
+    } catch (error) {
+        console.error("❌ Failed to connect to UTA:", error);
+    }
 }
 
 const progressBar = new cliProgress.SingleBar({
@@ -63,4 +75,5 @@ progressBar.start(100, 0, { agent: 'Initializing...', eta: '-' });
 
     console.log("🟢 Guru Governance Wrapper fully integrated with UTA. Ready for next commands.");
 })();
+
 
