@@ -2,7 +2,7 @@ console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
 
 const cliProgress = require('cli-progress');
 const colors = require('ansi-colors');
-const fetch = require('node-fetch');
+
 
 console.log("🟢 Guru Governance Wrapper started...");
 
