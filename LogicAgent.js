@@ -1,5 +1,6 @@
 export async function runLogicAudit() {
-  console.log("🧠 Logic Audit Agent running...");
+  // console.log("🔎 UI Audit Agent running...");
+
 
   const checks = [
     { logic: "Mode State Logic", valid: true },
