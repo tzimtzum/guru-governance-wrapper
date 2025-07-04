@@ -1,7 +1,7 @@
 console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
 
-import cliProgress from 'cli-progress';
-import colors from 'ansi-colors';
+const cliProgress = require('cli-progress');
+const colors = require('ansi-colors');
 
 console.log("🟢 Guru Governance Wrapper started...");
 
