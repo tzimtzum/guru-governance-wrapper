@@ -1,3 +1,5 @@
+console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
+
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
 
@@ -17,9 +19,8 @@ function checkHeartbeat(agentName) {
     console.log(`❤️ Heartbeat check passed for ${agentName}`);
 }
 
-// Simulate agent execution — no external imports or old logs
+// Simulate agent execution
 async function startAgents(agentName) {
-    // Simulate a task with a slight delay to see progress
     await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
