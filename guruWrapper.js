@@ -5,7 +5,6 @@ import colors from 'ansi-colors';
 
 console.log("🟢 Guru Governance Wrapper started...");
 
-// Define agents directly here
 const agents = [
     { name: 'UI Audit Agent', weight: 20 },
     { name: 'Logic Audit Agent', weight: 20 },
@@ -14,24 +13,20 @@ const agents = [
     { name: 'Proof Gatekeeper', weight: 20 }
 ];
 
-// Heartbeat checker
 function checkHeartbeat(agentName) {
     console.log(`❤️ Heartbeat check passed for ${agentName}`);
 }
 
-// Simulate agent execution
 async function startAgents(agentName) {
     await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
-// Simulate connecting to UTA
 async function connectToUTA() {
     console.log("🔗 Establishing secure Guru link to UTA...");
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log("✅ UTA connection established. Guru oversight active.");
 }
 
-// Setup progress bar
 const progressBar = new cliProgress.SingleBar({
     format: 'Guru Progress |' + colors.cyan('{bar}') + '| {percentage}% || {agent}',
     barCompleteChar: '\u2588',
@@ -61,7 +56,6 @@ progressBar.start(100, 0, { agent: 'Initializing...' });
 
     console.log("🟢 Guru Governance Wrapper fully integrated with UTA. Ready for next commands.");
 })();
-
 
 
 
