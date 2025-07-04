@@ -1,3 +1,5 @@
+console.log("❌❌❌ Running GURU PROGRESS PANEL ❌❌❌");
+
 import ora from 'ora';
 import chalk from 'chalk';
 import Table from 'cli-table3';
@@ -58,4 +60,5 @@ async function updateAgents() {
 }
 
 updateAgents();
+
 
