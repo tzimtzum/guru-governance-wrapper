@@ -2,79 +2,49 @@ console.log("✅✅✅ Running GURU WRAPPER ✅✅✅");
 
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
-import fetch from 'node-fetch';
+import { BaseAgent } from './BaseAgent.js';
 
 console.log("🟢 Guru Governance Wrapper started...");
 
+// Example dynamic agents list (can be expanded at runtime)
 const agents = [
-    { name: 'UI Audit Agent', weight: 20, estSeconds: 3 },
-    { name: 'Logic Audit Agent', weight: 20, estSeconds: 3 },
-    { name: 'Feature Matrix Agent', weight: 20, estSeconds: 3 },
-    { name: 'Learning Simulation Agent', weight: 20, estSeconds: 3 },
-    { name: 'Proof Gatekeeper', weight: 20, estSeconds: 3 }
+  new BaseAgent({ name: "UI Audit Agent", task: "Check UI consistency", weight: 20, estSeconds: 3 }),
+  new BaseAgent({ name: "Logic Audit Agent", task: "Verify logical flow", weight: 20, estSeconds: 3 }),
+  new BaseAgent({ name: "Feature Matrix Agent", task: "Cross-check features", weight: 20, estSeconds: 3 }),
+  new BaseAgent({ name: "Learning Simulation Agent", task: "Simulate learning", weight: 20, estSeconds: 3 }),
+  new BaseAgent({ name: "Proof Gatekeeper", task: "Validate proofs", weight: 20, estSeconds: 3 }),
 ];
 
-function checkHeartbeat(agentName) {
-    console.log(`❤️ Heartbeat check passed for ${agentName}`);
-}
-
-async function startAgents(agentName, estSeconds) {
-    const steps = estSeconds * 2; // smooth 0.5s increments
-    for (let i = 0; i < steps; i++) {
-        await new Promise(resolve => setTimeout(resolve, 500));
-    }
-}
-
-async function connectToUTA() {
-    console.log("🔗 Establishing secure Guru link to UTA...");
-
-    try {
-        const response = await fetch("http://localhost:3000/api/guru/route", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "startGuru" })
-        });
-
-        const data = await response.json();
-        console.log(`✅ UTA response: ${data.message}`);
-        console.log("✅ UTA connection established. Guru oversight active.");
-    } catch (error) {
-        console.error("❌ Failed to connect to UTA:", error);
-    }
-}
-
+// Setup progress bar
 const progressBar = new cliProgress.SingleBar({
-    format: 'Guru Progress |' + colors.cyan('{bar}') + '| {percentage}% || {agent} ETA: {eta}s',
-    barCompleteChar: '\u2588',
-    barIncompleteChar: '\u2591',
-    hideCursor: true
+  format: 'Guru Progress |' + colors.cyan('{bar}') + '| {percentage}% || {agent} ETA: {eta}s',
+  barCompleteChar: '\u2588',
+  barIncompleteChar: '\u2591',
+  hideCursor: true
 });
 
-let progress = 0;
-progressBar.start(100, 0, { agent: 'Initializing...', eta: '-' });
+export async function guruWrapperAgent() {
+  let progress = 0;
+  progressBar.start(100, 0, { agent: 'Initializing...', eta: '-' });
 
-(async () => {
-    for (const agent of agents) {
-        const estimated = agent.estSeconds;
-        progressBar.update(progress, { agent: `${agent.name}`, eta: estimated });
+  for (const agent of agents) {
+    progressBar.update(progress, { agent: `${agent.name}`, eta: agent.estSeconds });
 
-        await startAgents(agent.name, estimated);
+    await agent.learn();
+    await agent.start();
+    await agent.heartbeatCheck();
+    await agent.finalize();
 
-        progress += agent.weight;
-        progressBar.update(progress, { agent: `${agent.name} Done ✅`, eta: 0 });
+    progress += agent.weight;
+    progressBar.update(progress, { agent: `${agent.name} Done ✅`, eta: 0 });
+  }
 
-        checkHeartbeat(agent.name);
-    }
+  progressBar.update(100, { agent: 'All agents completed ✅', eta: 0 });
+  progressBar.stop();
 
-    progressBar.update(100, { agent: 'All agents completed ✅', eta: 0 });
-    progressBar.stop();
+  console.log("✅ All agents finished. Guru wrapper complete. No forced UTA connection here.");
+}
 
-    console.log("✅ All agents finished. Connecting to UTA...");
-
-    await connectToUTA();
-
-    console.log("🟢 Guru Governance Wrapper fully integrated with UTA. Ready for next commands.");
-})();
 
 
 
