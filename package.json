@@ -1,0 +1,26 @@
+{
+  "name": "guru-governance-wrapper",
+  "version": "1.0.0",
+  "description": "Blocks any final code or text outputs until all audits pass, ensuring full Guru Mode integrity.",
+  "main": "FeatureMatrixAgent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzimtzum/guru-governance-wrapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tzimtzum/guru-governance-wrapper/issues"
+  },
+  "homepage": "https://github.com/tzimtzum/guru-governance-wrapper#readme",
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "cli-progress": "^3.12.0",
+    "node-fetch": "^3.3.2"
+  }
+}
